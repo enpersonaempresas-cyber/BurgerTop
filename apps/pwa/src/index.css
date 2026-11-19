@@ -1,13 +1,4 @@
-:root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --bg: #090d16;
-  --surface: #131b2e;
-  --surface-border: #1e293b;
-  --text: #f8fafc;
-  --text-muted: #94a3b8;
-  --success: #10b981;
-}
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Oswald:wght@600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -18,31 +9,17 @@
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #030712;
-  color: var(--text);
+  line-height: 1.5;
+  user-select: none;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
 }
 
-#root {
-  width: 100%;
-  max-width: 480px;
-  min-height: 100vh;
-  background-color: var(--bg);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-out;
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
 }

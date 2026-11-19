@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const db = require('./db');
 const apiRoutes = require('./routes/api');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,7 +18,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// API Endpoints
+// API & Auth Endpoints
+app.use('/api/auth', authRoutes);
 app.use('/api', apiRoutes);
 
 // Define paths for the 3 compiled frontends
