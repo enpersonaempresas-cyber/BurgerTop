@@ -31,10 +31,26 @@ function hasBuild(dir) {
   return fs.existsSync(path.join(dir, 'index.html'));
 }
 
+// Alias para URLs comunes y errores de tipeo (/ap -> /app/)
+app.get(['/ap', '/ap/*'], (req, res) => {
+  res.redirect(301, '/app/');
+});
+
 // 1. Mobile PWA under /app
 if (hasBuild(pwaPath)) {
-  app.use('/app', express.static(pwaPath));
-  app.get('/app/*', (req, res) => {
+  app.use('/app', express.static(pwaPath, {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('sw.js') || filePath.endsWith('index.html')) {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+      }
+    }
+  }));
+  app.get(['/app', '/app/*'], (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
     res.sendFile(path.join(pwaPath, 'index.html'));
   });
 } else {
@@ -51,8 +67,15 @@ if (hasBuild(pwaPath)) {
 
 // 2. Control Panel under /admin
 if (hasBuild(adminPath)) {
-  app.use('/admin', express.static(adminPath));
-  app.get('/admin/*', (req, res) => {
+  app.use('/admin', express.static(adminPath, {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('index.html')) {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      }
+    }
+  }));
+  app.get(['/admin', '/admin/*'], (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.sendFile(path.join(adminPath, 'index.html'));
   });
 } else {

@@ -1,12 +1,12 @@
 {
-  "name": "NextCollege Mobile PWA",
-  "short_name": "NextCollege",
-  "description": "Aplicación móvil PWA de NextCollege sincronizada en tiempo real con Dokploy CI/CD",
+  "name": "Burger Factory • PWA Preventa",
+  "short_name": "BurgerFactory",
+  "description": "Aplicación móvil de preventa y pedidos rápidos conectada en tiempo real a iDempiere ERP",
   "start_url": "/app/",
   "scope": "/app/",
   "display": "standalone",
-  "background_color": "#090d16",
-  "theme_color": "#2563eb",
+  "background_color": "#0b0e14",
+  "theme_color": "#ea580c",
   "orientation": "portrait",
   "icons": [
     {
